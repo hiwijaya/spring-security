@@ -20,4 +20,9 @@ public class WebController {
         return ResponseEntity.ok("This is protected content.");
     }
 
+    @GetMapping("/restricted")
+    public ResponseEntity<String> restricted() {
+        return ResponseEntity.ok("Only user with ADMIN role who can access this page.");
+    }
+
 }
