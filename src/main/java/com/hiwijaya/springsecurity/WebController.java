@@ -15,4 +15,9 @@ public class WebController {
         return ResponseEntity.ok("<h1>spring-security demo</h1>");
     }
 
+    @GetMapping("/content")
+    public ResponseEntity<String> content() {
+        return ResponseEntity.ok("This is protected content.");
+    }
+
 }
