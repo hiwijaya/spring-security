@@ -2,6 +2,7 @@ package com.hiwijaya.springsecurity;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -11,8 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class WebController {
 
     @GetMapping("/")
-    public ResponseEntity<String> index() {
-        return ResponseEntity.ok("<h1>spring-security demo</h1>");
+    public String index() {
+        return "index";
     }
 
     @GetMapping("/content")
@@ -23,6 +24,11 @@ public class WebController {
     @GetMapping("/restricted")
     public ResponseEntity<String> restricted() {
         return ResponseEntity.ok("Only user with ADMIN role who can access this page.");
+    }
+
+    @GetMapping("/login")
+    public String login(Model model) {
+        return "login";
     }
 
 }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Header</title>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="Happy Indra Wijaya"/>
+</head>
+<body>
+
+<header th:fragment="header">
+    <img src="/static/img/banner.png" th:src="@{/img/banner.png}" alt="banner"/>
+
+    <div class="header-menu">
+        <a href="/">HOME</a>
+
+        <span class="separator">|</span>
+
+        <div class="auth-box">
+            <div sec:authorize="isAnonymous()">
+                <a href="/login">SIGN IN</a>
+            </div>
+            <div sec:authorize="isAuthenticated()" class="auth-box">
+                <span sec:authentication="name" class="username"></span>
+                <span>&nbsp;</span>
+                <span sec:authentication="principal.authorities" class="role"></span>
+
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="logout">SIGN OUT</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</header>
+
+</body>
+</html>
