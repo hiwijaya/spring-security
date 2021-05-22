@@ -31,17 +31,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         UserDetails user = User.builder()
                 .username("user")
-                .password(passwordEncoder().encode("rahasia"))
+                .password(passwordEncoder().encode("secret"))
                 .roles("USER")
                 .build();
 
         UserDetails admin = User.builder()
                 .username("admin")
-                .password(passwordEncoder().encode("rahasia"))
-                .roles("USER", "ADMIN")
+                .password(passwordEncoder().encode("secret"))
+                .roles("ADMIN")
                 .build();
 
-        return new InMemoryUserDetailsManager(user, admin);
+        UserDetails superAdmin = User.builder()
+                .username("super-admin")
+                .password(passwordEncoder().encode("secret"))
+                .roles("SUPER_ADMIN")
+                .build();
+
+        return new InMemoryUserDetailsManager(user, admin, superAdmin);
     }
 
     @Override
@@ -50,15 +56,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic().disable()
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/content").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/restricted").hasRole("ADMIN")
+                .antMatchers("/public").permitAll()
+                .antMatchers("/profile/**").hasAnyRole("USER", "ADMIN", "SUPER_ADMIN")
+                .antMatchers("/config").hasAnyRole("ADMIN", "SUPER_ADMIN")
+                .antMatchers("/config/reset/**").hasRole("SUPER_ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
+                    .formLogin()
                     .loginPage("/login")
+                    .loginProcessingUrl("/perform-login")
+                    .defaultSuccessUrl("/", true)
                     .permitAll()
                 .and()
-                .logout();
+                    .logout()
+                    .logoutUrl("/perform-logout")
+                    .logoutSuccessUrl("/")
+                .and()
+                    .exceptionHandling().accessDeniedPage("/access-denied")
+        ;
     }
 
     @Override

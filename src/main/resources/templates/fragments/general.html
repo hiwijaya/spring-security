@@ -28,8 +28,8 @@
                 <span>&nbsp;</span>
                 <span sec:authentication="principal.authorities" class="role"></span>
 
-                <form th:action="@{/logout}" method="post">
-                    <button type="submit" class="logout">SIGN OUT</button>
+                <form th:action="@{/perform-logout}" method="post">
+                    <button type="submit">SIGN OUT</button>
                 </form>
             </div>
         </div>
