@@ -50,6 +50,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new InMemoryUserDetailsManager(user, admin, superAdmin);
     }
 
+    @Bean
+    public CustomAccessDeniedHandler accessDeniedHandler() {
+        return new CustomAccessDeniedHandler();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -72,7 +77,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .logoutUrl("/perform-logout")
                     .logoutSuccessUrl("/")
                 .and()
-                    .exceptionHandling().accessDeniedPage("/access-denied")
+                    //.exceptionHandling().accessDeniedPage("/access-denied")
+                    .exceptionHandling().accessDeniedHandler(accessDeniedHandler());
         ;
     }
 
