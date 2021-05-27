@@ -1,17 +1,17 @@
 package com.hiwijaya.springsecurity;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 
 /**
@@ -27,33 +27,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    protected UserDetailsService userDetailsService() {
-
-        UserDetails user = User.builder()
-                .username("user")
-                .password(passwordEncoder().encode("secret"))
-                .roles("USER")
-                .build();
-
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password(passwordEncoder().encode("secret"))
-                .roles("ADMIN")
-                .build();
-
-        UserDetails superAdmin = User.builder()
-                .username("super-admin")
-                .password(passwordEncoder().encode("secret"))
-                .roles("SUPER_ADMIN")
-                .build();
-
-        return new InMemoryUserDetailsManager(user, admin, superAdmin);
-    }
-
-    @Bean
     public CustomAccessDeniedHandler accessDeniedHandler() {
         return new CustomAccessDeniedHandler();
     }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+    @Autowired
+    private UserDetailsService userDetailsService;      // injected with AuthService
+
+    @Autowired
+    public void authConfig(AuthenticationManagerBuilder auth) throws Exception {
+        auth.parentAuthenticationManager(authenticationManagerBean())
+                .userDetailsService(userDetailsService);
+    }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
