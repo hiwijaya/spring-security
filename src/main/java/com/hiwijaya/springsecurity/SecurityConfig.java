@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    private UserDetailsService userDetailsService;      // injected with AuthService
+    private UserDetailsService userDetailsService;      // injected by AuthService
 
     @Autowired
     public void authConfig(AuthenticationManagerBuilder auth) throws Exception {

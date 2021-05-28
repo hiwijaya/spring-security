@@ -19,7 +19,13 @@ public class AuthService implements UserDetailsService {
     private AuthRepository authRepository;
 
 
-    public User saveUser(User user){
+    public User register(User user){
+
+        authRepository.findByUsername(user.getUsername())
+                .ifPresent((u) -> {
+                    throw new RuntimeException("Username already registered.");
+                });
+
         return authRepository.save(user);
     }
 

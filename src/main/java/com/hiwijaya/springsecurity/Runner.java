@@ -30,7 +30,7 @@ public class Runner implements ApplicationRunner {
                 .role(Role.ROLE_ADMIN)
                 .build();
 
-//        authService.saveUser(admin);
+//        authService.register(admin);
 
     }
 
