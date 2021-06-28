@@ -36,8 +36,6 @@ public class AuthService implements UserDetailsService {
         User user = authRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-        System.out.println(user.getRole() + user.getPassword());
-
         return org.springframework.security.core.userdetails.User
                 .withUsername(user.getUsername())
                 .password(user.getPassword())
