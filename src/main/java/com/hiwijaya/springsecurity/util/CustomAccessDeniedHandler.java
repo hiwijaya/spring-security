@@ -1,4 +1,4 @@
-package com.hiwijaya.springsecurity;
+package com.hiwijaya.springsecurity.util;
 
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;

@@ -1,4 +1,4 @@
-package com.hiwijaya.springsecurity;
+package com.hiwijaya.springsecurity.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

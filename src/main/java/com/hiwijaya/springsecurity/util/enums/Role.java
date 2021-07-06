@@ -1,4 +1,4 @@
-package com.hiwijaya.springsecurity;
+package com.hiwijaya.springsecurity.util.enums;
 
 /**
  * @author Happy Indra Wijaya

@@ -1,4 +1,4 @@
-package com.hiwijaya.springsecurity;
+package com.hiwijaya.springsecurity.util;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneId;

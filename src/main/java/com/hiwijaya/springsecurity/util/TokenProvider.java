@@ -1,5 +1,7 @@
-package com.hiwijaya.springsecurity;
+package com.hiwijaya.springsecurity.util;
 
+import com.hiwijaya.springsecurity.util.enums.Role;
+import com.hiwijaya.springsecurity.util.exceptions.InvalidTokenException;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,5 +1,7 @@
-package com.hiwijaya.springsecurity;
+package com.hiwijaya.springsecurity.config;
 
+import com.hiwijaya.springsecurity.util.CustomAccessDeniedHandler;
+import com.hiwijaya.springsecurity.util.TokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

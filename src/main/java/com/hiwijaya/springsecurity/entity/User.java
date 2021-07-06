@@ -1,6 +1,6 @@
 package com.hiwijaya.springsecurity.entity;
 
-import com.hiwijaya.springsecurity.Role;
+import com.hiwijaya.springsecurity.util.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

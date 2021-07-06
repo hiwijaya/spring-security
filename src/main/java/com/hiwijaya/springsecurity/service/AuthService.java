@@ -1,6 +1,6 @@
 package com.hiwijaya.springsecurity.service;
 
-import com.hiwijaya.springsecurity.TokenProvider;
+import com.hiwijaya.springsecurity.util.TokenProvider;
 import com.hiwijaya.springsecurity.entity.User;
 import com.hiwijaya.springsecurity.repository.AuthRepository;
 import org.springframework.beans.factory.annotation.Autowired;

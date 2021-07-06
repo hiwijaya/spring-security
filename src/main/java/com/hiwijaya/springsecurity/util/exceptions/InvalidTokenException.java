@@ -1,4 +1,4 @@
-package com.hiwijaya.springsecurity;
+package com.hiwijaya.springsecurity.util.exceptions;
 
 import org.springframework.security.core.AuthenticationException;
 

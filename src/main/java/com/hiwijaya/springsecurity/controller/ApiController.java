@@ -1,6 +1,6 @@
 package com.hiwijaya.springsecurity.controller;
 
-import com.hiwijaya.springsecurity.ResponseHandler;
+import com.hiwijaya.springsecurity.util.ResponseHandler;
 import com.hiwijaya.springsecurity.model.LoginRequest;
 import com.hiwijaya.springsecurity.model.LoginResponse;
 import com.hiwijaya.springsecurity.service.AuthService;

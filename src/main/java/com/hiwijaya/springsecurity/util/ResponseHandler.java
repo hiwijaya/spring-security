@@ -1,4 +1,4 @@
-package com.hiwijaya.springsecurity;
+package com.hiwijaya.springsecurity.util;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
